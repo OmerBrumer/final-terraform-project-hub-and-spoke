@@ -1,0 +1,14 @@
+[
+    {
+        "name": "RouteToWorkspokeThroughFirewall",
+        "address_prefix": "${workspoke_main_subnet_address_prefix}",
+        "next_hop_type": "VirtualAppliance",
+        "next_hop_in_ip_address": "${firewall_private_ip_address}"
+    },
+    {
+        "name": "RouteToMonitorspokeThroughFirewall",
+        "address_prefix": "${monitorspoke_main_subnet_address_prefix}",
+        "next_hop_type": "VirtualAppliance",
+        "next_hop_in_ip_address": "${firewall_private_ip_address}"
+    }
+]

@@ -1,0 +1,378 @@
+{
+    "application_rule_collection_group": {
+        "name": "ApplicationRulesCollectionGroup",
+        "priority": 300,
+        "application_rule_collections": [
+            {
+                "name": "app",
+                "priority": 3000,
+                "action": "Allow",
+                "application_rules": [
+                    {
+                        "name": "ubuntu-archive",
+                        "source_addresses": [
+                            "${workspoke_main_subnet_address_prefix}",
+                            "${monitorspoke_main_subnet_address_prefix}"
+                        ],
+                        "source_ip_groups": [],
+                        "destination_fqdns": [
+                            "azure.archive.ubuntu.com",
+                            "motd.ubuntu.com",
+                            "esm.ubuntu.com",
+                            "security.ubuntu.com",
+                            "entropy.ubuntu.com",
+                            "canonical-bos01.cdn.snapcraftcontent.com"
+                        ],
+                        "destination_fqdn_tags": [],
+                        "terminate_tls": false,
+                        "web_categories": [],
+                        "destination_addresses": [],
+                        "protocols": [
+                            {
+                                "type": "Http",
+                                "port": 80
+                            },
+                            {
+                                "type": "Https",
+                                "port": 443
+                            }
+                        ],
+                        "description": "Ubuntu Archive"
+                    },
+                    {
+                        "name": "docker-setup",
+                        "source_addresses": [
+                            "${workspoke_main_subnet_address_prefix}",
+                            "${monitorspoke_main_subnet_address_prefix}"
+                        ],
+                        "source_ip_groups": [],
+                        "destination_fqdns": [
+                            "registry-1.docker.io",
+                            "auth.docker.io",
+                            "production.cloudflare.docker.com"
+                        ],
+                        "destination_fqdn_tags": [],
+                        "terminate_tls": false,
+                        "web_categories": [],
+                        "destination_addresses": [],
+                        "protocols": [
+                            {
+                                "type": "Http",
+                                "port": 80
+                            },
+                            {
+                                "type": "Https",
+                                "port": 443
+                            }
+                        ],
+                        "description": "Docker Setup"
+                    },
+                    {
+                        "name": "k8s-download",
+                        "source_addresses": [
+                            "${workspoke_main_subnet_address_prefix}"
+                        ],
+                        "source_ip_groups": [],
+                        "destination_fqdns": [
+                            "api.snapcraft.io",
+                            "dl.k8s.io"
+                        ],
+                        "destination_fqdn_tags": [],
+                        "terminate_tls": false,
+                        "web_categories": [],
+                        "destination_addresses": [],
+                        "protocols": [
+                            {
+                                "type": "Http",
+                                "port": 80
+                            },
+                            {
+                                "type": "Https",
+                                "port": 443
+                            }
+                        ],
+                        "description": "K8S Download"
+                    },
+                    {
+                        "name": "azure-extensions",
+                        "source_addresses": [
+                            "${workspoke_main_subnet_address_prefix}",
+                            "${workspoke_aks_subnet_address_prefix}",
+                            "${monitorspoke_main_subnet_address_prefix}"
+                        ],
+                        "source_ip_groups": [],
+                        "destination_fqdns": [
+                            "aka.ms",
+                            "azurecliprod.blob.core.windows.net",
+                            "md-hdd-crjqfrlpzkzh.z19.blob.storage.azure.net",
+                            "westeurope.monitoring.azure.com"
+                        ],
+                        "destination_fqdn_tags": [],
+                        "terminate_tls": false,
+                        "web_categories": [],
+                        "destination_addresses": [],
+                        "protocols": [
+                            {
+                                "type": "Http",
+                                "port": 80
+                            },
+                            {
+                                "type": "Https",
+                                "port": 443
+                            }
+                        ],
+                        "description": "Azure Extensions"
+                    },
+                    {
+                        "name": "grafana",
+                        "source_addresses": [
+                            "${workspoke_main_subnet_address_prefix}",
+                            "${monitorspoke_main_subnet_address_prefix}"
+                        ],
+                        "source_ip_groups": [],
+                        "destination_fqdns": [
+                            "dl.grafana.com",
+                            "grafana.com"
+                        ],
+                        "destination_fqdn_tags": [],
+                        "terminate_tls": false,
+                        "web_categories": [],
+                        "destination_addresses": [],
+                        "protocols": [
+                            {
+                                "type": "Http",
+                                "port": 80
+                            },
+                            {
+                                "type": "Https",
+                                "port": 443
+                            }
+                        ],
+                        "description": "Grafana"
+                    }
+                ]
+            },
+            {
+                "name": "microsoft",
+                "priority": 3001,
+                "action": "Allow",
+                "application_rules": [
+                    {
+                        "name": "azure-login",
+                        "source_addresses": [
+                            "${workspoke_main_subnet_address_prefix}"
+                        ],
+                        "source_ip_groups": [],
+                        "destination_fqdns": [
+                            "login.microsoftonline.com"
+                        ],
+                        "destination_fqdn_tags": [],
+                        "terminate_tls": false,
+                        "web_categories": [],
+                        "destination_addresses": [],
+                        "protocols": [
+                            {
+                                "type": "Http",
+                                "port": 80
+                            },
+                            {
+                                "type": "Https",
+                                "port": 443
+                            }
+                        ],
+                        "description": "microsoft"
+                    },
+                    {
+                        "name": "azure-managment",
+                        "source_addresses": [
+                            "${workspoke_main_subnet_address_prefix}",
+                            "${workspoke_aks_subnet_address_prefix}",
+                            "${monitorspoke_main_subnet_address_prefix}"
+                        ],
+                        "source_ip_groups": [],
+                        "destination_fqdns": [
+                            "management.azure.com",
+                            "acs-mirror.azureedge.net",
+                            "azure.net",
+                            "md-hdd-crjqfrlpzkzh.z19.blob.storage.azure.net",
+                            "7caef0c3-9e3c-44f9-8c3d-84ce172fc53f.agentsvc.azure-automation.net",
+                            "82c25c2d-eff4-4278-8cbc-58486649fb41.oms.opinsights.azure.com",
+                            "82c25c2d-eff4-4278-8cbc-58486649fb41.ods.opinsights.azure.com"
+                        ],
+                        "destination_fqdn_tags": [],
+                        "terminate_tls": false,
+                        "web_categories": [],
+                        "destination_addresses": [],
+                        "protocols": [
+                            {
+                                "type": "Http",
+                                "port": 80
+                            },
+                            {
+                                "type": "Https",
+                                "port": 443
+                            }
+                        ],
+                        "description": "Azure Managment"
+                    },
+                    {
+                        "name": "microsoft",
+                        "source_addresses": [
+                            "${workspoke_main_subnet_address_prefix}",
+                            "${workspoke_aks_subnet_address_prefix}",
+                            "${monitorspoke_main_subnet_address_prefix}"
+                        ],
+                        "source_ip_groups": [],
+                        "destination_fqdns": [
+                            "mcr.microsoft.com",
+                            "westeurope.data.mcr.microsoft.com",
+                            "packages.microsoft.com"
+                        ],
+                        "destination_fqdn_tags": [],
+                        "terminate_tls": false,
+                        "web_categories": [],
+                        "destination_addresses": [],
+                        "protocols": [
+                            {
+                                "type": "Http",
+                                "port": 80
+                            },
+                            {
+                                "type": "Https",
+                                "port": 443
+                            }
+                        ],
+                        "description": "Microsoft Artifact Registry"
+                    }
+                ]
+            },
+            {
+                "name": "aks",
+                "priority": 3002,
+                "action": "Allow",
+                "application_rules": [
+                    {
+                        "name": "aks-access",
+                        "source_addresses": [
+                            "${workspoke_main_subnet_address_prefix}",
+                            "${monitorspoke_main_subnet_address_prefix}"
+                        ],
+                        "source_ip_groups": [],
+                        "destination_fqdns": [
+                            "${aks_fqdn}"
+                        ],
+                        "destination_fqdn_tags": [],
+                        "terminate_tls": false,
+                        "web_categories": [],
+                        "destination_addresses": [],
+                        "protocols": [
+                            {
+                                "type": "Http",
+                                "port": 80
+                            },
+                            {
+                                "type": "Https",
+                                "port": 443
+                            }
+                        ],
+                        "description": "aks"
+                    }
+                ]
+            },
+            {
+                "name": "spoke",
+                "priority": 3003,
+                "action": "Allow",
+                "application_rules": [
+                    {
+                        "name": "grafana",
+                        "source_addresses": [
+                            "${vpn_gateway_subnet_adress_prefix}"
+                        ],
+                        "source_ip_groups": [],
+                        "destination_fqdns": [
+                            "${grafana_address}"
+                        ],
+                        "destination_fqdn_tags": [],
+                        "terminate_tls": false,
+                        "web_categories": [],
+                        "destination_addresses": [],
+                        "protocols": [
+                            {
+                                "type": "Http",
+                                "port": 3000
+                            }
+                        ],
+                        "description": "grafana access"
+                    }
+                ]
+            },
+            {
+                "name": "logs",
+                "priority": 3004,
+                "action": "Allow",
+                "application_rules": [
+                    {
+                        "name": "log-analytics",
+                        "source_addresses": [
+                            "${workspoke_main_subnet_address_prefix}",
+                            "${monitorspoke_main_subnet_address_prefix}"
+                        ],
+                        "source_ip_groups": [],
+                        "destination_fqdns": [
+                            "api.loganalytics.io"
+                        ],
+                        "destination_fqdn_tags": [],
+                        "terminate_tls": false,
+                        "web_categories": [],
+                        "destination_addresses": [],
+                        "protocols": [
+                            {
+                                "type": "Http",
+                                "port": 80
+                            },
+                            {
+                                "type": "Https",
+                                "port": 443
+                            }
+                        ],
+                        "description": "logs"
+                    }
+                ]
+            },
+            {
+                "name": "acr",
+                "priority": 3005,
+                "action": "Allow",
+                "application_rules": [
+                    {
+                        "name": "acr-access",
+                        "source_addresses": [
+                            "${workspoke_aks_subnet_address_prefix}",
+                            "${workspoke_main_subnet_address_prefix}"
+                        ],
+                        "source_ip_groups": [],
+                        "destination_fqdns": [
+                            "${acr_name}.azurecr.io"
+                        ],
+                        "destination_fqdn_tags": [],
+                        "terminate_tls": false,
+                        "web_categories": [],
+                        "destination_addresses": [],
+                        "protocols": [
+                            {
+                                "type": "Http",
+                                "port": 80
+                            },
+                            {
+                                "type": "Https",
+                                "port": 443
+                            }
+                        ],
+                        "description": "acr"
+                    }
+                ]
+            }
+        ]
+    }
+}

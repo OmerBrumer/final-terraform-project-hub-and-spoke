@@ -1,0 +1,66 @@
+[
+  {
+    "name": "AllowSSHInBound",
+    "description": "Allow SSH Inbound",
+    "priority": 1010,
+    "access": "Allow",
+    "direction": "Inbound",
+    "protocol": "Tcp",
+    "source_address_prefix": "",
+    "source_address_prefixes": [
+      "${vpn_gateway_subnet_adress_prefix}"
+    ],
+    "source_application_security_group_ids": null,
+    "source_port_range": "*",
+    "source_port_ranges": [],
+    "destination_port_range": "22",
+    "destination_port_ranges": [],
+    "destination_application_security_group_ids": null,
+    "destination_address_prefix": "",
+    "destination_address_prefixes": [
+      "${workspoke_main_subnet_address_prefix}"
+    ]
+  },
+  {
+    "name": "AllowVnetAccessToStorageEndpoint",
+    "description": "Allow Vnet Access To Storage Endpoint",
+    "priority": 1210,
+    "access": "Allow",
+    "direction": "Inbound",
+    "protocol": "Tcp",
+    "source_address_prefix": "",
+    "source_address_prefixes": [
+      "${hub_subnet_address_prefix}"
+    ],
+    "source_application_security_group_ids": null,
+    "source_port_range": "*",
+    "source_port_ranges": [],
+    "destination_port_range": "*",
+    "destination_port_ranges": [],
+    "destination_application_security_group_ids": null,
+    "destination_address_prefix": "",
+    "destination_address_prefixes": [
+      "${firewall_private_ip_address}"
+    ]
+  },
+  {
+    "name": "DenyStorageEndpointAccess",
+    "description": "Deny Storage Endpoint Access",
+    "priority": 1310,
+    "access": "Deny",
+    "direction": "Inbound",
+    "protocol": "Tcp",
+    "source_address_prefix": "*",
+    "source_address_prefixes": [],
+    "source_application_security_group_ids": null,
+    "source_port_range": "*",
+    "source_port_ranges": [],
+    "destination_port_range": "*",
+    "destination_port_ranges": [],
+    "destination_application_security_group_ids": null,
+    "destination_address_prefix": "",
+    "destination_address_prefixes": [
+      "${firewall_private_ip_address}"
+    ]
+  }
+]
