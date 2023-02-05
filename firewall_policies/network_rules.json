@@ -1,0 +1,83 @@
+{
+    "network_rule_collection_group": {
+        "name": "NetworkRulesCollectionGroup",
+        "priority": 200,
+        "network_rule_collections": [
+            {
+                "name": "workspoke-network-rule-collection",
+                "priority": 2000,
+                "action": "Allow",
+                "network_rules": [
+                    {
+                        "name": "allow-ssh",
+                        "protocols": [
+                            "TCP"
+                        ],
+                        "source_addresses": [
+                            "${vpn_gateway_subnet_adress_prefix}"
+                        ],
+                        "source_ip_groups": [],
+                        "destination_ports": [
+                            "22"
+                        ],
+                        "destination_addresses": [
+                            "${workspoke_main_subnet_address_prefix}"
+                        ],
+                        "destination_ip_groups": [],
+                        "destination_fqdns": []
+                    }
+                ]
+            },
+            {
+                "name": "monitorspoke-network-rule-collection",
+                "priority": 2001,
+                "action": "Allow",
+                "network_rules": [
+                    {
+                        "name": "allow-ssh",
+                        "protocols": [
+                            "TCP"
+                        ],
+                        "source_addresses": [
+                            "${vpn_gateway_subnet_adress_prefix}"
+                        ],
+                        "source_ip_groups": [],
+                        "destination_ports": [
+                            "22"
+                        ],
+                        "destination_addresses": [
+                            "${monitorspoke_main_subnet_address_prefix}"
+                        ],
+                        "destination_ip_groups": [],
+                        "destination_fqdns": []
+                    }
+                ]
+            },
+            {
+                "name": "grafana-network-rule-collection",
+                "priority": 2002,
+                "action": "Allow",
+                "network_rules": [
+                    {
+                        "name": "allow-grafana",
+                        "protocols": [
+                            "TCP"
+                        ],
+                        "source_addresses": [
+                            "${vpn_gateway_subnet_adress_prefix}"
+                        ],
+                        "source_ip_groups": [],
+                        "destination_ports": [
+                            "3000"
+                        ],
+                        "destination_addresses": [
+                            "${monitorspoke_virtual_machine}"
+                        ],
+                        "destination_ip_groups": [],
+                        "destination_fqdns": []
+                    }
+                ]
+            }
+        ]
+    }
+}
